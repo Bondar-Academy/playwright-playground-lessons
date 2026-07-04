@@ -52,3 +52,30 @@ test('checkboxes', async({page}) => {
         await expect(box).toBeChecked()
     }
 })
+
+test('Lists and dropdowns', async({page}) => {
+    await page.getByText('Modal & Overlays').click()
+    await page.getByText('Toastr').click()
+
+    //standard dropdown
+    await page.locator('.form-group', {hasText: 'Toast type:'}).getByRole('combobox').selectOption('info')
+    await expect(page.getByRole('combobox')).toHaveValue('info')
+
+    //custom dropdowns
+    await page.locator('.form-group', {hasText: 'Position:'}).locator('nb-select').click()
+    //option1
+    //await page.getByRole('list').getByText('bottom-end').click()
+    //option2
+    await page.locator('nb-option', {hasText: "bottom-end"}).click()
+    await expect(page.locator('.form-group', {hasText: 'Position:'}).locator('nb-select')).toHaveText('bottom-end')
+
+    //looping through the list
+    const positionDropDownField = page.locator('.form-group', {hasText: 'Position:'}).locator('nb-select')
+    await positionDropDownField.click()
+    const allListValues = await page.locator('nb-option').allTextContents()
+    for (const listValue of allListValues){
+        await page.locator('nb-option', {hasText: listValue}).click()
+        await expect(positionDropDownField).toHaveText(listValue)
+        await positionDropDownField.click()
+    }
+})
