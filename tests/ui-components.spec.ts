@@ -79,3 +79,11 @@ test('Lists and dropdowns', async({page}) => {
         await positionDropDownField.click()
     }
 })
+
+test('tooltips', async ({ page }) => {
+    await page.getByText('Modal & Overlays').click()
+    await page.getByText('Tooltip').click()
+
+    await page.getByRole('button', {name: 'Top'}).hover()
+    await expect(page.getByRole('tooltip')).toHaveText('This is a tooltip')
+})
