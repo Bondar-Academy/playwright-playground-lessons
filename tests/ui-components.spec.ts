@@ -188,3 +188,12 @@ test('sliders', async ({ page }) => {
     await page.mouse.up()
     await expect(tempBox).toContainText('30')
 })
+
+test('iFrames', async({page}) => {
+    await page.getByText('Modal & Overlays').click()
+    await page.getByText('Dialog').click()
+
+    const frameLocator = page.frameLocator('[data-cy="esc-close-iframe"]')
+
+    await frameLocator.getByRole('button', {name: 'Open Dialog with esc close'}).click()
+})
