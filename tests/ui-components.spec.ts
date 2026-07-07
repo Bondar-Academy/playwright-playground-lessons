@@ -138,3 +138,14 @@ test('web tables', async ({ page }) => {
         }
     }
 })
+
+test('datepicker', async ({ page }) => {
+    await page.getByText('Forms').click()
+    await page.getByText('Datepicker').click()
+
+    const calendarInputField = page.getByPlaceholder('Form Picker')
+    await calendarInputField.click()
+
+    await page.locator('.day-cell:not(.bounding-month)').getByText('2', { exact: true }).click()
+    await expect(calendarInputField).toHaveValue('Jul 2, 2026')
+})
