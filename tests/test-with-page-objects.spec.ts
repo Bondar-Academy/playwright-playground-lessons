@@ -24,5 +24,5 @@ test('Parametrized page object methods', async({page}) => {
     await formLayoutsPage.submitInlineForm('Artem Bondar', 'artem@test.com', false)
     await navigateTo.datePickerPage()
     await datepickerPage.selectCommonDatepickerDateFromToday(5)
-    await datepickerPage.selectDatePickerWithDangeFromToday(7, 20)
+    await datepickerPage.selectDatePickerWithRangeFromToday(7, 20)
 })

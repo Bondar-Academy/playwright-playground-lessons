@@ -14,7 +14,7 @@ export class DatepickerPage {
         await expect(calendarInputField).toHaveValue(expectedDate)
     }
 
-    async selectDatePickerWithDangeFromToday(daysFromTodayStart: number, daysFromTodayEnd: number){
+    async selectDatePickerWithRangeFromToday(daysFromTodayStart: number, daysFromTodayEnd: number){
         const calendarInputField = this.page.getByPlaceholder('Range Picker')
         await calendarInputField.click()
         const expectedDateStart = await this.selectDateInTheCalendar(daysFromTodayStart)
