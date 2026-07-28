@@ -1,11 +1,11 @@
 import { Page } from '@playwright/test'
 import { step } from '../helpers/test-step-decorator'
+import { HelperBase } from './helper-base'
 
-export class FormLayoutsPage {
-    private readonly page: Page
-
+export class FormLayoutsPage extends HelperBase{
+    
     constructor(page: Page) {
-        this.page = page
+        super(page)
     }
     @step
     async submitUsingTheGridForm(email: string, password: string, optionText: string) {
